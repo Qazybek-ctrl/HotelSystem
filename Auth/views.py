@@ -21,3 +21,8 @@ class LoginingView(LoginView):
     def get(self, request):
         form = self.form_class
         return render(request, self.template_name, {'login_form': form})
+    
+    def get_context_data(self,*args, **kwargs):
+        context = super().get_context_data(*args,**kwargs)
+        context['login_form'] = AuthenticationForm()
+        return context

@@ -1,0 +1,142 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'bookingapp/assets/css/style.css' %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			
+			
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					
+					{% if request.user.is_authenticated == False%}
+					<a href="{% url 'login' %}"><h4 class="text-center mb-4">Please authorize to use Booking system</h4></a>
+					{% else %}
+							<h2 class="heading-section">Welcome {{ request.user.username }} </h2>
+					{% endif %}
+				</div>
+
+			</div>
+
+			<form method="get" >
+	
+				<h3>Sort</h3>
+
+				<div class="form-group col-md-2">
+					<select class="form-select" name="sortby">
+						<option selected></option>
+						<option value="price_low">Price, low to high</option>
+						<option value="price_high">Price, high to low</option>
+						<option value="seat_low">Seat, low to high</option>
+						<option value="seat_high">Seat, high to low</option>
+					</select>
+				</div>
+				
+				<hr>
+	
+				<h3>Filter</h3>
+				<h6>Choose date to get free rooms</h6>
+
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="viewCountMin">Minimum Price</label>
+						<input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="price_min">
+					</div>
+				
+					<div class="form-group col-md-2">
+						<label for="viewCountMax">Maximum Price</label>
+						<input type="number" min=0 class="form-control" id="viewCountMax" placeholder="0" name="price_max">
+					</div>
+			
+					<div class="form-group col-md-2">
+						<label for="viewCountMin">Minimum Seat</label>
+						<input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="seat_min">
+					</div>
+					
+					<div class="form-group col-md-2">
+						<label for="viewCountMax">Maximum Seat</label>
+						<input type="number" min=0 class="form-control" id="viewCountMax" placeholder="0" name="seat_max">
+					</div>
+
+					<div class="form-group col-md-2 col-lg-2">
+						<label for="publishDateMin">Start Date</label>
+						<input type="date" class="form-control" id="publishDateMin" name="start_day">
+					  </div>
+
+					  <div class="form-group col-md-2 col-lg-2">
+						<label for="publishDateMax">End Date</label>
+						<input type="date" class="form-control" id="publishDateMax" name="end_day">
+					  </div>
+				</div>
+	
+				<hr>
+		
+				<button type="submit" class="btn btn-primary">Send</button>
+	
+			</form>
+
+			<br>
+			<form method="get">
+				<input type="hidden" value="reset" name="res">
+				<button type="submit" class="btn btn-danger">Reset</button>
+			</form>
+
+			
+			<div class="row">
+				<div class="col-md-12">
+					
+					  <br>
+
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>name</th>
+					        <th>price</th>
+					        <th>seat</th>
+							<th></th>
+					        <th>Book</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+						{% for room in object_list %}
+					      <tr>
+					        <th scope="row" class="scope" > {{ room.name }}</th>
+					        <td>{{ room.price }}</td>
+					        <td>{{ room.seat }}</td>
+							<td></td>
+					        <td>
+									<a href="{{ room.name }}" class="btn btn-primary">Book Now</a>
+							</td>
+					      </tr>
+						{% endfor %}
+					      
+					      
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'bookingapp/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/popper.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+

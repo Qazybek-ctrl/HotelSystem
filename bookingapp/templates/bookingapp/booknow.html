@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'bookingapp/assets/css/style.css' %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			
+			
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section" style="color:rgb(13, 185, 62);">Welcome {{ request.user.username }} </h2>
+					<h3> Room name: {{ room_now.name }} </h3>
+				</div>
+
+			</div>
+
+			<form method="post">
+				{% csrf_token %}
+				  <!-- <div class="form-group col-md-2 col-lg-2">
+					<label for="publishDateMin">Start Date</label>
+					<input type="date" class="form-control" id="publishDateMin" name="start_day">
+				  </div>
+
+				  <div class="form-group col-md-2 col-lg-2">
+					<label for="publishDateMax">End Date</label>
+					<input type="date" class="form-control" id="publishDateMax" name="end_day">
+				  </div> -->
+				  {{ form.as_p }}
+				<button class="btn btn-danger">Book</button>
+			</form>
+
+
+			<br>
+
+			
+			
+		</div>
+	</section>
+
+	<script src="{% static 'bookingapp/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/popper.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+

@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'bookingapp/assets/css/style.css' %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			
+			
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section" style="color:rgb(13, 185, 62);">Welcome {{ request.user.username }} </h2>
+					<h3> Room name: {{ object.name }} </h3>
+					<h3> Room price: {{ object.price }} </h3>
+					<h3> Room seat: {{ object.seat }} </h3>
+				</div>
+
+			</div>
+
+
+			<br>
+
+			
+			<div class="row">
+				<div class="col-md-12">
+
+					<h3>Booking</h3>
+					
+					  <br>
+
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>User</th>
+					        <th>Start Day</th>
+					        <th>End Day</th>
+							<th></th>
+					        <th>Book</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+						{% for room in booked_rooms %}
+					      <tr>
+					        <th scope="row" class="scope" > {{ room.user }}</th>
+					        <td>{{ room.start_day }}</td>
+					        <td>{{ room.end_day }}</td>
+							<td></td>
+					        <td>
+									<a href="#" class="btn btn-primary">Book Now</a>
+							</td>
+					      </tr>
+						{% endfor %}
+					      
+					      
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'bookingapp/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/popper.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'bookingapp/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+
